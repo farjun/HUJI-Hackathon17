@@ -11,7 +11,7 @@ angular.module('mostPopularListingsApp.login', ['ngRoute'])
 .config(['$routeProvider',function($routeprovider){
 	$routeprovider.when('/login', {
 		controller: 'LoginController',
-		templateUrl: 'components/views/loginView.html'
+		templateUrl: 'components/views/profileView.html'
 	});
 }])
 

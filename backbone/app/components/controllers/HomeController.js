@@ -11,12 +11,12 @@ angular.module('mostPopularListingsApp.home', ['ngRoute'])
 .config(['$routeProvider',function($routeprovider){
 	$routeprovider.when('/', {
 		controller: 'HomeController',
-		templateUrl: 'components/views/homeView.html'
+		templateUrl: 'components/views/exploreView.html'
 	});
 }])
 
 // Controller definition for this module
-.controller('HomeController', ['$scope', function($scope) {
+.controller('HomeController', ['$scope',"$http", function($scope,$http) {
 
 	// Just a housekeeping.
 	// In the init method we are declaring all the
@@ -30,6 +30,19 @@ angular.module('mostPopularListingsApp.home', ['ngRoute'])
 	};
 
 	this.message = "Hello Home!";
+    /*$http.get("http://jenia90.pythonanywhere.com/api/getuser?id=12")
+        .then(function(response) {
+           // $scope.myWelcome = response.data;
+		console.log("response",response);
+        });*/
+    $http({
+        url: "http://jenia90.pythonanywhere.com/api/getuser",
+        method: "GET",
+        data: {id: 12}
+    }).then(function(response) {
+        // $scope.myWelcome = response.data;
+        console.log("response",response);
+    });
 
 }]);
 /*

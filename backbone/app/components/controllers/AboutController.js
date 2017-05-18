@@ -11,7 +11,7 @@ angular.module('mostPopularListingsApp.about', ['ngRoute'])
 .config(['$routeProvider',function($routeprovider){
 	$routeprovider.when('/about', {
 		controller: 'AboutController',
-		templateUrl: 'components/views/aboutView.html'
+		templateUrl: 'components/views/contactView.html'
 	});
 }])
 
