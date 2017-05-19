@@ -14,7 +14,7 @@ describe('AboutController Tests :', function() {
     // Get the controller
     beforeEach(inject(function($controller,$rootScope){
       scope = $rootScope.$new(); // initializa child of global $rootScope
-      controller = $controller("AboutController", {$scope: scope}); // Controller expects $scope
+      controller = $controller("MyProfileController", {$scope: scope}); // Controller expects $scope
 
     }));
 
