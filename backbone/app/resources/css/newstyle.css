@@ -42,6 +42,43 @@ body, html {
         background-attachment: scroll;
     }
 }
+.overlay {
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background-color: #06536d;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+.overlayNew{
+position: relative;
+font-weight: bold;
+  margin-top: -123px;
+  left: 0;
+  right: 0;
+  background-color: #06536d;
+  overflow: hidden;
+  width: 100%;
+  height: 120px;
+  opacity: 0.5;
+  transition: .5s ease;
+}
+
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
 
 .user-bottom{
     margin: auto;
