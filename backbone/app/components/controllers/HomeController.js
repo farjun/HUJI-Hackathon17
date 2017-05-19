@@ -55,7 +55,7 @@ angular.module('mostPopularListingsApp.home', ['ngRoute'])
 	 }).then(function(response) {
 	 // $scope.myWelcome = response.data;
 	 console.log("response",response.data);
-	 $scope.events = JSON.parse(response.data);
+	 $scope.events = response.data;
 	 });*/
 
 	$scope.clickToOpen = function(event){
