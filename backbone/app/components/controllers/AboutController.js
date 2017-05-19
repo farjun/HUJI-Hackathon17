@@ -15,6 +15,21 @@ angular.module('mostPopularListingsApp.about', ['ngRoute'])
 	});
 }])
 
+var flag = true;
+function showText() {
+  if (flag) {
+    document.getElementById('overlay').className = 'overlayNew';
+    flag = false;
+    var element = document.getElementById("largImg");
+    var captionText = document.getElementById("introtext");
+    captionText.innerHTML = element.alt;
+  }
+  else {
+    document.getElementById('overlay').className = 'overlay';
+    flag = true;
+  }
+}
+
 // Controller definition for this module
 .controller('MyProfileController', ['$scope', function($scope) {
 
