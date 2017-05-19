@@ -35,14 +35,14 @@ angular.module('mostPopularListingsApp.home', ['ngRoute'])
            // $scope.myWelcome = response.data;
 		console.log("response",response);
         });*/
-    $http({
+    /*$http({
         url: "http://jenia90.pythonanywhere.com/api/getuser",
         method: "GET",
         data: {id: 12}
     }).then(function(response) {
         // $scope.myWelcome = response.data;
         console.log("response",response);
-    });
+    });*/
 
 }]);
 /*

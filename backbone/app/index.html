@@ -16,56 +16,34 @@
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"-->
+  <link rel="stylesheet" href="resources/css/newstyle.css">
+  <link rel="stylesheet" href="resources/css/w3.css">
   <base href="/">
 </head>
 <body>
-<div class="w3-top">
+
+<div class="w3-top" style="background-color: white">
   <div class="w3-bar" id="myNavbar">
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-    <!--todo add logo-->
-    <a href="#home" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> EXPLORE </a>
-    <a href="#login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY PROFILE </a>
-    <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> MY PROFILE</a>
+    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PORTFOLIO</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <i class="fa fa-search"></i>
     </a>
-
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '302707526850601',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v2.8'
-            });
-            FB.AppEvents.logPageView();
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-            });
-        }
-    </script>
-
-
-    <fb:login-button
-            scope="public_profile,email"
-            onlogin="checkLoginState();">
-    </fb:login-button>
   </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()"> MY PROFILE </a>
+    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+  </div>
+</div>
   <!--<ul class="menu">
     <li><a href="#/">Home</a></li>
     <li><a href="#/about">About</a></li>
