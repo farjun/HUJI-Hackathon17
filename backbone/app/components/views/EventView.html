@@ -1,26 +1,23 @@
 
-<div class="center" style="width:96.5%">
+<div class="center" width=97%>
 
 	<!-- Container (EXPERIENCES Section) -->
 	<div class="w3-content w3-container w3-padding-64" style="max-width:100%; padding-bottom:0px!important" id="portfolio">
 		<h3 class="w3-center">MY EXPERIENCES</h3>
-		<p class="w3-center" style="margin: 0 auto;"><em>Here are some of my favorite activities<br> I would like to like to experience with you!</em></p><br>
+		<p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p><br>
 		<!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
 		<div class="w3-row-padding w3-center">
 			<div class="w3-col m3" class="mainImg" style="width:66.5%">
-				<img src="{{event_pic[0]}}" id = "largImg" style="width:100%" ng-click="showText()"  class="w3-hover-opacity" alt="The mist over the mountains">
-				<div class="overlay" id="overlay" ng-click="showText()">
-						<div class="text" ><p id="introtext"></p>
-						 <button type="button">Join!</button></div>
-				</div>
+				<img src="{{images[0]}}" id = "largImg" style="width:100%"  class="w3-hover-opacity" alt="The mist over the mountains">
+
 			</div>
 
 			<div class="w3-col m3" style="width:33.5%">
-				<img src="{{event_pic[1]}}" style="width:100%" ng-click="switchImg(2)" class="w3-hover-opacity" alt="Coffee beans">
+				<img src="{{images[1]}}" style="width:100%" ng-click="switchImg(2)" class="w3-hover-opacity" alt="Coffee beans">
 			</div>
 
 			<div class="w3-col m3" style="width:33.5%">
-				<img src="{{event_pic[2]}}" style="width:100%" ng-click="switchImg(3)" class="w3-hover-opacity" alt="Bear closeup">
+				<img src="{{images[2]}}" style="width:100%" ng-click="switchImg(3)" class="w3-hover-opacity" alt="Bear closeup">
 			</div>
 
 		</div>
@@ -37,7 +34,7 @@
 	</div>
 
 	<div style="width: 200px; height: 300px; position: relative;">
-		<img id="image1" style="position: relative;margin-left: 22px;margin-up: 5px;" src="resources/img/coverPhotoLatest.jpg" alt="backroungImg" />
+		<img id="image1" style="position: relative;margin-left: 21px;margin-up: 5px;" src="resources/img/coverPhotoLatest.jpg" alt="backroungImg" />
 		<img id="profileImg" src="resources/img/ProfilePic.jpg" alt="profilePic" />
 		<div class="user-name">
 			<h2 id="first-name">Nadav</h2>
@@ -49,8 +46,8 @@
     margin-bottom: 0;
     overflow: hidden;
     display: list-item;
-    width: 72%;">
-		<ul class="user-info" style="list-style: none; width: 65%; margin-top: 10px">
+    width: 78%;">
+		<ul class="user-info" style="list-style: none; width: 70%;">
 			<li id ="city" style="font-weight: bold">Jerusalem</li>
 			<li id = "age" style="margin-left: 1%;">25</li>
 			<li>Years</li>
