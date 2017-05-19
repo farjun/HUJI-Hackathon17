@@ -28,9 +28,7 @@ angular.module('mostPopularListingsApp.about', ['ngRoute'])
 	
 	};
 
-	$scope.onClick=function(element){
 
-	};
 	$scope.images=["resources/img/Event1Large.jpg","resources/img/Event2.jpg","resources/img/Event3.jpg"]
 	$scope.switchImg=function (num) {
 		var temp = $scope.images[0];
