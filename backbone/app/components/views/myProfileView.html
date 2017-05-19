@@ -1,51 +1,8 @@
-<script>
 
-
-    // Modal Image Gallery
-    function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
-    }
-/*
-    function switchImg(element) {
-        var tempSrc = document.getElementById("largImg").src;
-        document.getElementById("largImg").src = element.src;
-        element.src = tempSrc;
-    }*/
-
-    function getImpText(element){
-        if (element.src == Event1Large) {
-
-        }
-    }
-
-    // Change style of navbar on scroll
-    window.onscroll = function() {myFunction()};
-    function myFunction() {
-        var navbar = document.getElementById("myNavbar");
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
-        } else {
-            navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
-        }
-    }
-
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function toggleFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
 <div class="center">
 
 	<!-- Container (EXPERIENCES Section) -->
-	<div class="w3-content w3-container w3-padding-64" style="max-width:90%; padding-bottom:0px!important" id="portfolio">
+	<div class="w3-content w3-container w3-padding-64" style="max-width:100%; padding-bottom:0px!important" id="portfolio">
 		<h3 class="w3-center">MY EXPERIENCES</h3>
 		<p class="w3-center"><em>Here are some of my latest lorem work ipsum tipsum.<br> Click on the images to make them bigger</em></p><br>
 		<!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
@@ -77,8 +34,8 @@
 	</div>
 
 	<div style="width: 200px; height: 300px; position: relative;">
-		<img id="image1" style="position: relative;margin-left: -30px;" src="../resources/img/coverPhotoLatest.jpg" alt="backroungImg" />
-		<img id="profileImg" src="../resources/img/profilePic.jpg" alt="profilePic" />
+		<img id="image1" style="position: relative;margin-left: -30px;" src="resources/img/coverPhotoLatest.jpg" alt="backroungImg" />
+		<img id="profileImg" src="resources/img/ProfilePic.jpg" alt="profilePic" />
 		<div class="user-name">
 			<h2 id="first-name">Nadav</h2>
 			<h2 id="last-name" style="margin-left: 90%;">Goshen</h2>
