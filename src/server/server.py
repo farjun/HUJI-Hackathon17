@@ -1,22 +1,43 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import json
 import sqlite3
 
 db = sqlite3.connect('mysite/simitu.db')
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 
 @app.route('/')
 def render():
-    return render_template('fb2.html')
+    return render_template('index.html')
+
+@app.route('/resources/<path:path>')
+def resources(path):
+    return send_from_directory('app/resources', path)
+
+@app.route('/components/<path:path>')
+def components(path):
+    return send_from_directory('app/components', path)
+
+@app.route('/app/<path:path>')
+def app_js(path):
+    return send_from_directory('app/', path)
 
 
 @app.route('/api/getuser')
 def get_user():
     uid = request.args['id']
+    print("Getting user: " + str(uid))
     curs = db.cursor()
-    curs.execute("SELECT * FROM USERS WHERE ID=?", (uid,))
-    q = curs.fetchall()
+    q = []
+    try:
+        curs.execute("SELECT * FROM USERS WHERE ID=?", (uid,))
+
+        q = curs.fetchall()
+    except Exception as e:
+        print (e)
+        return 'BAD', 500
+    if len(q) < 1:
+        return 'BAD', 500
 
     return json.dumps({"uid": q[0],
                        "name": q[1],
@@ -26,33 +47,116 @@ def get_user():
                        "event": q[5],
                        "likes": q[6],
                        "favorites": q[7],
-                       "interests": q[8].split()})
+                       "interests": q[8].split(';')} for q in curs.fetchall())
+
+@app.route('/api/getevent')
+def get_event():
+    eid = request.args['eid']
+    curs = db.cursor()
+
+    try:
+        curs.execute("SELECT * FROM EVENTS WHERE ID=?", (eid,))
+        q = curs.fetchone()
+        ev = {"eid": q[0],
+              "uid": q[1],
+              "name": q[2],
+              "description": q[3],
+              "location": q[4],
+              "event_pic": q[5].split(';'),
+              "age_restriction": q[6],
+              "attendees_restriction": q[7]}
+        curs.execute("SELECT * FROM USERS where ID=?", (ev['uid'],))
+        q = curs.fetchone()
+        u = {"uid": q[0],
+             "name": q[1],
+             "age:": q[2],
+             "profile": q[3],
+             "cover": [4],
+             "event": q[5],
+             "likes": q[6],
+             "favorites": q[7],
+             "interests": q[8].split(';')}
+    except Exception as e:
+        print(e)
+        return 'BAD', 500
+
+    return json.dumps({"user": u, "event": ev})
+
+@app.route('/api/removeevent')
+def remove_event():
+    eid = request.args['eid']
+
+    curs = db.cursor()
+    try:
+        curs.execute("DELETE From EVENTS WHERE ID=?", (eid,))
+        db.commit()
+    except Exception as e:
+        print(e)
+        return 'BAD', 500
+
+    return 'OK', 200
 
 
 @app.route('/api/adduser', methods=['POST'])
 def add_user():
     curs = db.cursor()
     j = request.json
-    print(j)
     uid = j['uid']
     name = j['name']
     age = j['age']
     profile_photo = j['profile']
     cover_photo = j['cover']
-    interest = ""
-    for i in j['interests']:
-        interest += str(i) + ";"
+    interest = ";".join(j['interests'])
 
     try:
-        curs.execute("INSERT INTO USERS VALUES (?,?,?,?,?,0,0,'',?)",
-                     (uid, name, age, profile_photo, cover_photo,
-                      interest[1:],))
+        curs.execute("INSERT INTO USERS VALUES (?,?,?,?,?,0,0,?,0,0,0)",
+                     (uid, name, age, profile_photo, cover_photo, interest,))
         db.commit()
     except Exception as e:
         print(e)
-        return 'BAD'
+        return 'BAD', 500
 
-    return 'OK'
+    return 'OK', 200
+
+
+@app.route('/api/addevent', methods=['POST'])
+def add_event():
+    j = request.json
+    uid = j['uid']
+    name = j['name']
+    desc = j['desc']
+    loc = j['location']
+    ep = ';'.join(j['photos'])
+    agr = j['agerestriction']
+    atr = j['attendeerestriction']
+
+    value = (None, uid, name, desc, loc, ep,agr, atr,)
+
+    curs = db.cursor()
+    try:
+        curs.execute("INSERT INTO EVENTS VALUES (?,?,?,?,?,?,?,?)", value)
+        db.commit()
+    except Exception as e:
+        print(e)
+        return 'BAD', 500
+
+    return 'OK', 200
+
+
+
+@app.route('/api/getevents')
+def get_events():
+    curs = db.cursor()
+    curs.execute("SELECT * FROM EVENTS")
+
+    return json.dumps([{"eid": q[0],
+                        "uid": q[1],
+                        "name": q[2],
+                        "description": q[3],
+                        "location": q[4],
+                        "event_pic": q[5].split(';'),
+                        "age_restriction": q[6],
+                        "attendees_restriction": q[7]} for q in curs.fetchall()])
 
 
 @app.route('/api/addrequest')
@@ -62,11 +166,11 @@ def add_request():
     print("add: " + event_id + " " + user_id)
     c = db.cursor()
 
-    c.execute("INSERT INTO notifications VALUES (?, ?, ?)",
+    c.execute("INSERT INTO notifications VALUES (?, ?, ?, ?)",
               (None, event_id, 'request', user_id,))
     db.commit()
 
-    return "OK"
+    return "OK", 200
 
 
 @app.route('/api/getnotification')
