@@ -51,7 +51,7 @@ body, html {
     color: #002B41;
     font-size: 20px;
     position: absolute;
-    margin-left: 212%;
+    margin-left: 245%;
     margin-top: 25%;
 }
 .user-info{
@@ -83,7 +83,7 @@ body, html {
     border-radius: 100%;
     position: absolute;
     top: 82%;
-    left: 220%;
+    left: 250%;
 }
 #loveButton{
     height: 60px;
