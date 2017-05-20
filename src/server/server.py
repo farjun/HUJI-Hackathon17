@@ -22,32 +22,37 @@ def components(path):
 def app_js(path):
     return send_from_directory('app/', path)
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
 
 @app.route('/api/getuser')
 def get_user():
     uid = request.args['id']
     print("Getting user: " + str(uid))
     curs = db.cursor()
-    q = []
     try:
         curs.execute("SELECT * FROM USERS WHERE ID=?", (uid,))
-
-        q = curs.fetchall()
     except Exception as e:
         print (e)
         return 'BAD', 500
-    if len(q) < 1:
-        return 'BAD', 500
 
-    return json.dumps({"uid": q[0],
-                       "name": q[1],
-                       "age:": q[2],
-                       "profile": q[3],
-                       "cover": [4],
-                       "event": q[5],
-                       "likes": q[6],
-                       "favorites": q[7],
-                       "interests": q[8].split(';')} for q in curs.fetchall())
+    q = [{"uid": q[0],
+          "name": q[1],
+          "age:": q[2],
+          "profile": q[3],
+          "cover": [4],
+          "likes": q[5],
+          "favorites": q[6],
+          "interests": q[7].split(';'),
+          "event1ID": q[8],
+          "event2ID": q[9],
+          "event3ID": q[10]} for q in curs.fetchall()]
+
+    print(q)
+
+    return json.dumps(q)
 
 @app.route('/api/getevent')
 def get_event():
@@ -109,8 +114,9 @@ def add_user():
     interest = ";".join(j['interests'])
 
     try:
-        curs.execute("INSERT INTO USERS VALUES (?,?,?,?,?,0,0,?,0,0,0)",
-                     (uid, name, age, profile_photo, cover_photo, interest,))
+        curs.execute("INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                     (uid, name, age, profile_photo, cover_photo, 0, 0,
+                      interest, 0, 0, 0))
         db.commit()
     except Exception as e:
         print(e)
